@@ -1,0 +1,122 @@
+<div class="container" *ngIf="currentUser; else loggedOut">
+    <header class="jumbotron">
+      <h3>
+        <strong>Welcome {{form.Email}}</strong> 
+      </h3>
+      <p>there is a small bug ont his page where it doesn't refresh the navigation banner the first time filling out details, please refresh again for new users. (ensures all user details are filled before making an appointment).</p>
+    </header>
+
+    <div class="col-md-6 register">
+      <form
+        name="form"
+        (ngSubmit)="f.form.valid && onSave()"
+        #f="ngForm"
+        novalidate
+      >
+      <div class="form-group">
+        <label for="Email">Email</label>
+        <input
+          type="text"
+          class="form-control"
+          disabled
+          value={{form.Email}}
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="FirstName">First Name</label>
+        <input
+          type="text"
+          class="form-control"
+          name="FirstName"
+          [(ngModel)]="form.FirstName"
+          required
+          pattern="[A-Za-z]+"
+          #firstname="ngModel"
+        />
+        <div class="alert alert-danger" *ngIf="firstname.errors && f.submitted">
+          <div  *ngIf="firstname.errors.required">First name is required!</div>
+          <div *ngIf="firstname.errors.pattern">First name can only be normal characters</div>   
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="LastName">Last Name</label>
+        <input
+          type="text"
+          class="form-control"
+          name="LastName"
+          [(ngModel)]="form.LastName"
+          required
+          pattern="[A-Za-z]+"
+          #lastname="ngModel"
+        />
+        <div class="alert alert-danger" role="alert" *ngIf="lastname.errors && f.submitted">
+          <div  *ngIf="lastname.errors.required">Last name is required!</div>
+          <div *ngIf="lastname.errors.pattern">Last name can only be normal characters</div>   
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="DateOfBirth">Date of Birth</label>
+        <input
+          type="date"
+          class="form-control"
+          name="DateOfBirth"
+          valueAsDate = "form.DateOfBirth"
+          [(ngModel)]="form.DateOfBirth"
+          required
+          #dateofbirth="ngModel"
+        />
+        <div class="alert alert-danger" role="alert" *ngIf="dateofbirth.errors && f.submitted">
+          <div *ngIf="dateofbirth.errors.required">Date of Birth is required!</div> 
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="PhoneNumber">Phone Number</label>
+        <input
+          type="text"
+          class="form-control"
+          name="PhoneNumber"
+          [(ngModel)]="form.PhoneNumber"
+          required
+          pattern="[0-9]+"
+          minlength="8"
+          #phonenumber="ngModel"
+        />
+        <div class="alert alert-danger" role="alert" *ngIf="phonenumber.errors && f.submitted">
+          <div *ngIf="phonenumber.errors.required">Phone number is required!</div> 
+          <div *ngIf="phonenumber.errors.pattern">Only numbers are allowed</div> 
+          <div *ngIf="phonenumber.errors.minlength">Phone number must be at least 8 digits</div> 
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="Sex">Sex</label>
+        <div>
+          <input id="male" type="radio" value="Male" name="Sex" [(ngModel)]="form.Sex">
+          <label for="male">Male</label>
+          <input id="female" type="radio" value="Female" name="Sex" [(ngModel)]="form.Sex" style="margin-left:20px">
+          <label for="female">Female</label>
+        </div>
+        <div class="alert alert-danger" role="alert" *ngIf="form.Sex == null && f.submitted">
+          Sex is required!
+        </div>
+      </div>
+
+      <div class="alert alert-success" *ngIf="isUpdated">
+        Successfully updated user profile.
+      </div>
+
+      <div class="form-group">
+        <button class="btn btn-primary btn-block">Update</button>
+      </div>
+      </form>
+    </div>
+  </div>
+  
+  <ng-template #loggedOut>
+    Please login.
+  </ng-template>
+  

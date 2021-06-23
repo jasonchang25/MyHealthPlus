@@ -1,0 +1,38 @@
+<div id="app">
+  <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <a href="#" class="navbar-brand">MyHealthPlus</a>
+    <ul class="navbar-nav mr-auto" routerLinkActive="active">
+      <li class="nav-item" *ngIf="showAny">
+        <a href="/BookAppointment" class="nav-link" *ngIf="isLoggedIn" routerLink="bookAppointment">Book Appointment</a>
+      </li>      
+      <li class="nav-item" *ngIf="showStaffBoard">
+        <a href="/ViewAppointments" class="nav-link" routerLink="viewAppointments">Appointments</a>
+      </li> 
+      <li class="nav-item" *ngIf="showAdminBoard">
+        <a href="/CreateStaffAcount" class="nav-link" routerLink="createStaffAcount">Create Staff Account</a>
+      </li>     
+    </ul>
+
+    <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+      <li class="nav-item">
+        <a href="/Register" class="nav-link" routerLink="register">Register</a>
+      </li>
+      <li class="nav-item">
+        <a href="/Login" class="nav-link" routerLink="login">Login</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+      <li class="nav-item">
+        <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
+      </li>
+      <li class="nav-item">
+        <a href class="nav-link" (click)="logout()">LogOut</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</div>

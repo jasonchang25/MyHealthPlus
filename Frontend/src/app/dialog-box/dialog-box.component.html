@@ -1,0 +1,9 @@
+<!-- dialog-box.component.html -->
+<h1 mat-dialog-title>Edit Comment</h1>
+<div mat-dialog-content>
+    <input placeholder="Add Comments" matInput [(ngModel)]="local_data.Comments">
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="doAction()">Update</button>
+  <button mat-button (click)="closeDialog()" mat-flat-button color="warn">Cancel</button>
+</div>
