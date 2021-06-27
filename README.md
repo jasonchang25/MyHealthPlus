@@ -41,6 +41,7 @@ My staff should also be able to log in and view my appointments from their accou
     Or make your own
  
 <strong>Features:</strong> 
+
     - Valdiation of user details before allowing them to access the rest of the site
     - Front end and backend validation of appointment bookings to prevent clashes of times
     - Front end and backend validation of page access and API calls base on authorisation levels
@@ -48,6 +49,7 @@ My staff should also be able to log in and view my appointments from their accou
     - Staff and Admin accounts can only be created by Admin
  
 <strong>Overview of pages:</strong> 
+
 A website has been developed to help clients make online bookings for appointments and have staff and administrators view and manage them.
 Depending on permission level of the user they will have access to the following pages:
 
